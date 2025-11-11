@@ -47,17 +47,18 @@ python
 >>> from api import db
 >>> db.create_all()
 exit()
-python api.py
+python api.py 
+```
 Your app should now be live on:
 👉 http://127.0.0.1:5000/
 
-🔑 Environment Variables (.env)
+## 🔑 Environment Variables (.env)
 
 Create a `.env` file in your project root and add:
 
 ```bash
 JWT_SECRET_KEY=your_secret_key_here
-
+```
 
 ## 📂 Folder Structure
 📦 delivery-api
@@ -68,3 +69,12 @@ JWT_SECRET_KEY=your_secret_key_here
 │   └── data.db
 └── .venv/
 
+
+
+### Postman Collection
+
+You can import the Postman collection for this API:
+
+1. Download `postman/delivery-api.postman_collection.json`.
+2. Open Postman → Import → Choose File → Select the collection.
+3. Start testing the endpoints.

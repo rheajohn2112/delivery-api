@@ -61,14 +61,6 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
     
-@app.route('/init-db')
-def init_db():
-    try:
-        db.create_all()
-        return {"message": "Tables created successfully!"}
-    except Exception as e:
-        return {"error": str(e)}
-
 
 @app.route('/')
 def home():
