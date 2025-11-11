@@ -48,6 +48,7 @@ class Delivery(db.Model):
 
 
 class User(db.Model):
+    __tablename__ = 'users' 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
@@ -59,6 +60,15 @@ class User(db.Model):
     
     def check_password(self, password):
         return check_password_hash(self.password, password)
+    
+@app.route('/init-db')
+def init_db():
+    try:
+        db.create_all()
+        return {"message": "Tables created successfully!"}
+    except Exception as e:
+        return {"error": str(e)}
+
 
 @app.route('/')
 def home():
@@ -277,11 +287,3 @@ def delete_delivery_details(id):
     db.session.delete(delivery)
     db.session.commit()
     return jsonify({'message': 'Delivery deleted successfully!'})
-
-
-# At the very end of your file
-
-if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()  # creates tables if they don't exist
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
