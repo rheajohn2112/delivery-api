@@ -21,7 +21,7 @@ if not os.path.exists('instance'):
     os.makedirs('instance')
 
 # SQLite DB path inside instance folder
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
