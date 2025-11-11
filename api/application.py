@@ -18,12 +18,17 @@ jwt = JWTManager(app)
 
 database_url = os.environ.get('DATABASE_URL')
 
+if not database_url:
+    raise RuntimeError("DATABASE_URL environment variable not set!")
+
 # Handle common issue with PostgreSQL URLs on Render
 if database_url and database_url.startswith("postgres://"):
     database_url = database_url.replace("postgres://", "postgresql://", 1)
 # SQLite DB path inside instance folder
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+print("Connecting to database:", database_url)
 
 db = SQLAlchemy(app)
 
