@@ -267,6 +267,13 @@ def delete_delivery_details(id):
     return jsonify({'message': 'Delivery deleted successfully!'})
 
 
+# At the very end of your file
+
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()  # ensures tables exist before running
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
 
 
 
