@@ -48,6 +48,10 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+@app.route('/')
+def home():
+    return {"message": "Delivery API is running successfully!"}
+
 @app.route('/register',methods=['POST'])
 def add_user():
     data=request.get_json()
