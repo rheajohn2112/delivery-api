@@ -51,13 +51,13 @@ python api.py
 Your app should now be live on:
 👉 http://127.0.0.1:5000/
 
-🔑 Environment Variables (.env)
+## 🔑 Environment Variables (.env)
 
 Create a .env file in your project root and add:
 
 JWT_SECRET_KEY=your_secret_key_here
 
-📂 Folder Structure
+## 📂 Folder Structure
 📦 delivery-api
 ├── api.py
 ├── requirements.txt
