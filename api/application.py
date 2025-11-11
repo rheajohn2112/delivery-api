@@ -16,12 +16,15 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=15)
 jwt = JWTManager(app)
 
 
+# Ensure instance folder exists
+if not os.path.exists('instance'):
+    os.makedirs('instance')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
-db=SQLAlchemy(app)
+# SQLite DB path inside instance folder
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/data.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
-
+db = SQLAlchemy(app)
 
 class Delivery(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -271,11 +274,5 @@ def delete_delivery_details(id):
 
 if __name__ == "__main__":
     with app.app_context():
-        db.create_all()  # ensures tables exist before running
+        db.create_all()  # creates tables if they don't exist
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
-
-
-
-
-
-
