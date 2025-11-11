@@ -15,13 +15,8 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=15)
 jwt = JWTManager(app)
 
-
-# Ensure instance folder exists
-if not os.path.exists('instance'):
-    os.makedirs('instance')
-
 # SQLite DB path inside instance folder
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
