@@ -53,9 +53,11 @@ Your app should now be live on:
 
 ## 🔑 Environment Variables (.env)
 
-Create a .env file in your project root and add:
+Create a `.env` file in your project root and add:
 
+```bash
 JWT_SECRET_KEY=your_secret_key_here
+
 
 ## 📂 Folder Structure
 📦 delivery-api
